@@ -1,0 +1,6 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "search.exclude": {
+        "**/node_modules": false,
+    },
+}

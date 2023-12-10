@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:8.0.22
+    restart: always
+    env_file: 
+      - .env
+    environment:
+      - MYSQL_TCP_PORT=${DB_PORT}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    ports:
+      - 3306:3306
+    volumes:
+      - data:/var/lib/mysql
+    networks:
+      - db-network
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 55
+
+volumes:
+  data:
+networks:
+  db-network:
+    driver: bridge
