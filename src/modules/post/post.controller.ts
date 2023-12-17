@@ -33,15 +33,6 @@ import { PostService } from './post.service';
 @ApiTags('posts')
 export class PostController {
   constructor(private postService: PostService) {}
-  @Post('xml')
-  @HttpCode(HttpStatus.OK)
-  async testXml(@Body() req: any) {
-    console.log('req', req);
-    return {
-      message: 'OK',
-    };
-  }
-
   @Post()
   @HttpCode(HttpStatus.OK)
   @ApiCreatedResponse({ type: PostDto })

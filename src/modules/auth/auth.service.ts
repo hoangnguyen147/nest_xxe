@@ -39,7 +39,9 @@ export class AuthService {
     });
 
     if (!user) {
-      throw new UserNotFoundException();
+      throw new UserNotFoundException(
+        'Không tìm thấy user có email: ' + userLoginDto.identity,
+      );
     }
 
     const isPasswordValid = await validateHash(
